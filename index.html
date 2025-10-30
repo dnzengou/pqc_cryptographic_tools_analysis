@@ -95,7 +95,7 @@
         <section id="overview" class="my-12">
             <h1 class="text-4xl md:text-5xl font-bold text-teal-800 mb-4 text-center">Cryptography's Future: Algorithms and Integrity</h1>
             <p class="text-xl text-slate-700 max-w-4xl mx-auto text-center mb-10">
-                Explore, compare, and analyze the core pillars of digital security: Encryption, Digital Signatures, and the emerging field of Post-Quantum Cryptography (PQC). Use our AI tools for deep, context-aware analysis.
+                Explore, compare, and analyze the core pillars of digital security: <b>Encryption</b>, <b>Digital Signatures</b>, and the emerging field of <b>Post-Quantum Cryptography (PQC)</b>. Use our AI tools for deep, context-aware analysis.
             </p>
         </section>
         
@@ -138,20 +138,20 @@
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500">
                     <h3 class="text-2xl font-semibold text-blue-700 mb-4">Symmetric Encryption (e.g., AES)</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>**One Key:** Uses the exact same secret key for both encryption and decryption.</li>
-                        <li>**Speed:** Extremely fast and efficient for bulk data encryption.</li>
-                        <li>**Security Challenge:** The sender and receiver must securely exchange the secret key beforehand.</li>
-                        <li>**Example:** Securing data at rest (hard drive encryption).</li>
+                        <li><b>One Key:</b> Uses the exact same secret key for both encryption and decryption.</li>
+                        <li><b>Speed:</b> Extremely fast and efficient for bulk data encryption.</li>
+                        <li><b>Security Challenge:</b> The sender and receiver must securely exchange the secret key beforehand.</li>
+                        <li><b>Example:</b> Securing data at rest (hard drive encryption).</li>
                     </ul>
                     
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500">
                     <h3 class="text-2xl font-semibold text-purple-700 mb-4">Asymmetric Encryption (e.g., RSA, ECC)</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>**Key Pair:** Uses a public key (for encryption) and a private key (for decryption).</li>
-                        <li>**Speed:** Much slower than symmetric encryption; generally used for small data or key exchange.</li>
-                        <li>**Security Advantage:** The public key can be shared widely without compromising security.</li>
-                        <li>**Example:** Establishing a secure communication channel (TLS handshake).</li>
+                        <li><b>Key Pair:</b> Uses a public key (for encryption) and a private key (for decryption).</li>
+                        <li><b>Speed:</b> Much slower than symmetric encryption; generally used for small data or key exchange.</li>
+                        <li><b>Security Advantage:</b> The public key can be shared widely without compromising security.</li>
+                        <li><b>Example:</b> Establishing a secure communication channel (TLS handshake).</li>
                     </div>
                 </div>
             </div>
@@ -169,19 +169,19 @@
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
                     <h3 class="text-2xl font-semibold text-red-700 mb-4">Traditional PKI/X.509 Signatures</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>**Key Dependency:** Signature validity relies entirely on the secrecy of the private key.</li>
-                        <li>**Validity Challenge:** Signatures can be compromised if the key is stolen, and long-term validity requires complex timestamping and revocation lists.</li>
-                        <li>**Trust Model:** Based on a hierarchical chain of trust (Certificate Authorities).</li>
-                        <li>**Quantum Risk:** Highly vulnerable to quantum attacks that can break the underlying asymmetric key algorithms (like RSA).</li>
+                        <li><b>Key Dependency:</b> Signature validity relies entirely on the secrecy of the private key.</li>
+                        <li><b>Validity Challenge:</b> Signatures can be compromised if the key is stolen, and long-term validity requires complex timestamping and revocation lists.</li>
+                        <li><b>Trust Model:</b> Based on a hierarchical chain of trust (Certificate Authorities).</li>
+                        <li><b>Quantum Risk:</b> Highly vulnerable to quantum attacks that can break the underlying asymmetric key algorithms (like RSA).</li>
                     </ul>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-teal-500">
                     <h3 class="text-2xl font-semibold text-teal-700 mb-4">Keyless Signature Infrastructure (KSI)</h3>
                     <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li>**Keyless Verification:** Verification relies only on cryptographic hash functions and a public ledger (blockchain), not on the continued secrecy of any key.</li>
-                        <li>**Validity Advantage:** Signatures are future-proof and valid indefinitely, providing non-repudiation without key management risk.</li>
-                        <li>**Trust Model:** Based on the security of the one-way hash function and mathematical proof.</li>
-                        <li>**Quantum Risk:** Inherently **quantum-resilient** as verification is based on hash functions, which are much harder for quantum computers to break than asymmetric keys.</li>
+                        <li><b>Keyless Verification:</b> Verification relies only on cryptographic hash functions and a public ledger (blockchain), not on the continued secrecy of any key.</li>
+                        <li><b>Validity Advantage:</b> Signatures are future-proof and valid indefinitely, providing non-repudiation without key management risk.</li>
+                        <li><b>Trust Model:</b> Based on the security of the one-way hash function and mathematical proof.</li>
+                        <li><b>Quantum Risk:</b> Inherently <b>quantum-resilient</b> as verification is based on hash functions, which are much harder for quantum computers to break than asymmetric keys.</li>
                     </div>
                     
                 </div>
@@ -199,11 +199,11 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
                     <h3 class="text-xl font-semibold text-orange-700 mb-3">Lattice-Based Crypto</h3>
-                    <p class="text-sm text-slate-600">Considered the most promising PQC category. Security is based on the computational difficulty of finding short vectors in a high-dimensional grid (lattice). **NIST Standard: CRYSTALS-Kyber.**</p>
+                    <p class="text-sm text-slate-600">Considered the most promising PQC category. Security is based on the computational difficulty of finding short vectors in a high-dimensional grid (lattice). <code>NIST Standard: CRYSTALS-Kyber.</code></p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
                     <h3 class="text-xl font-semibold text-orange-700 mb-3">Hash-Based Signatures</h3>
-                    <p class="text-sm text-slate-600">Signatures based purely on secure hash functions. Extremely well-understood and fast, but signatures can be large, and keys are 'stateful' (used only once). **NIST Standard: XMSS / SPHINCS+**.</p>
+                    <p class="text-sm text-slate-600">Signatures based purely on secure hash functions. Extremely well-understood and fast, but signatures can be large, and keys are 'stateful' (used only once). <code>NIST Standard: XMSS / SPHINCS+</code>.</p>
                 </div>
                 <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
                     <h3 class="text-xl font-semibold text-orange-700 mb-3">Code-Based Crypto</h3>
@@ -588,4 +588,3 @@
 
 </body>
 </html>
-
