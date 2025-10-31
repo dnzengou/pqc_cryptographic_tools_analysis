@@ -7,11 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.12/marked.min.js"></script>
-    
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         body { font-family: 'Inter', sans-serif; }
-        
+
         .nav-link {
             @apply px-3 py-2 rounded-md text-sm font-medium text-stone-300 hover:text-white hover:bg-teal-700 transition-colors;
         }
@@ -24,7 +24,6 @@
         .tab-button.active {
             @apply border-teal-600 text-teal-700;
         }
-        /* Chatbot/LLM specific styles */
         #chatbox {
             height: 400px;
             overflow-y: auto;
@@ -41,12 +40,12 @@
             @apply justify-start;
         }
         .user-bubble {
-            background-color: #38bdf8; /* Sky 400 */
+            background-color: #38bdf8;
             color: white;
             @apply p-3 rounded-xl rounded-tr-none max-w-[75%] shadow;
         }
         .bot-bubble {
-            background-color: #115e59; /* Teal 800 */
+            background-color: #115e59;
             color: white;
             @apply p-3 rounded-xl rounded-tl-none max-w-[75%] shadow;
         }
@@ -65,527 +64,450 @@
             padding-left: 1.5rem;
         }
         .markdown-output h3 {
-             @apply text-lg font-semibold mt-4 mb-2;
+            @apply text-lg font-semibold mt-4 mb-2;
         }
     </style>
 </head>
 <body class="bg-stone-50 text-slate-800 font-sans leading-relaxed">
 
-    <header class="bg-teal-900 text-white sticky top-0 z-50 shadow-md">
-        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex-shrink-0">
-                    <span class="text-xl font-bold">Crypto Analysis Platform</span>
-                </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#comparison" class="nav-link active">Comparison</a>
-                        <a href="#encryption" class="nav-link">Encryption</a>
-                        <a href="#signatures" class="nav-link">Signatures</a>
-                        <a href="#pqc" class="nav-link">PQC</a>
-                        <a href="#ai-exploration" class="nav-link">AI Tools</a>
-                    </div>
+<header class="bg-teal-900 text-white sticky top-0 z-50 shadow-md">
+    <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+            <div class="flex-shrink-0">
+                <span class="text-xl font-bold">Crypto Analysis Platform</span>
+            </div>
+            <div class="hidden md:block">
+                <div class="ml-10 flex items-baseline space-x-4">
+                    <a href="#comparison" class="nav-link active">Comparison</a>
+                    <a href="#encryption" class="nav-link">Encryption</a>
+                    <a href="#signatures" class="nav-link">Signatures</a>
+                    <a href="#pqc" class="nav-link">PQC</a>
+                    <a href="#ai-exploration" class="nav-link">AI Tools</a>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
 
-        <section id="overview" class="my-12">
-            <h1 class="text-4xl md:text-5xl font-bold text-teal-800 mb-4 text-center">Cryptography's Future: Algorithms and Integrity</h1>
-            <p class="text-xl text-slate-700 max-w-4xl mx-auto text-center mb-10">
-                Explore, compare, and analyze the core pillars of digital security: <b>Encryption</b>, <b>Digital Signatures</b>, and the emerging field of <b>Post-Quantum Cryptography (PQC)</b>. Use our AI tools for deep, context-aware analysis.
-            </p>
-        </section>
-        
-        <hr class="my-16 border-slate-200">
+    <section id="overview" class="my-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-teal-800 mb-4 text-center">
+            Cryptography's Future: Algorithms and Integrity
+        </h1>
+        <p class="text-xl text-slate-700 max-w-4xl mx-auto text-center mb-10">
+            Explore, compare, and analyze the core pillars of digital security: 
+            <strong>Encryption</strong>, <strong>Digital Signatures</strong>, and 
+            <strong>Post-Quantum Cryptography (PQC)</strong>. Use our AI tools for deep, 
+            context-aware analysis.
+        </p>
+    </section>
 
-        <!-- Master Comparison Table -->
-        <section id="comparison" class="my-12">
-            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Master Algorithm Comparison</h2>
-            <p class="text-lg text-slate-600 max-w-3xl mx-auto text-center mb-8">
-                A quick overview of foundational and advanced cryptographic techniques across different domains.
-            </p>
+    <hr class="my-16 border-slate-200">
 
-            <div class="overflow-x-auto bg-white rounded-xl shadow-lg border border-slate-200">
-                <table class="min-w-full divide-y divide-slate-200">
-                    <thead class="bg-teal-50">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Algorithm/Scheme</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Primary Function</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Key Type</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Quantum Vulnerability</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Primary Use Case</th>
-                        </tr>
-                    </thead>
-                    <tbody id="comparisonTableBody" class="divide-y divide-slate-100">
-                        <!-- Data rows will be injected here by JavaScript -->
-                    </tbody>
-                </table>
+    <!-- Master Comparison Table -->
+    <section id="comparison" class="my-12">
+        <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Master Algorithm Comparison</h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto text-center mb-8">
+            A quick overview of foundational and advanced cryptographic techniques.
+        </p>
+        <div class="overflow-x-auto bg-white rounded-xl shadow-lg border border-slate-200">
+            <table class="min-w-full divide-y divide-slate-200">
+                <thead class="bg-teal-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Algorithm/Scheme</th>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Primary Function</th>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Key Type</th>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Quantum Vulnerability</th>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-teal-700 uppercase tracking-wider">Primary Use Case</th>
+                    </tr>
+                </thead>
+                <tbody id="comparisonTableBody" class="divide-y divide-slate-100">
+                    <!-- Injected by JS -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <hr class="my-16 border-slate-200">
+
+    <!-- Encryption Section -->
+    <section id="encryption" class="my-12 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Symmetric and Asymmetric Encryption</h2>
+        <p class="text-lg text-slate-600 text-center mb-8">
+            Encryption protects data confidentiality. Compare the two dominant forms.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500">
+                <h3 class="text-2xl font-semibold text-blue-700 mb-4">Symmetric Encryption (e.g., AES)</h3>
+                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <li><strong>One Key:</strong> Same key for encryption/decryption.</li>
+                    <li><strong>Speed:</strong> Extremely fast for bulk data.</li>
+                    <li><strong>Challenge:</strong> Secure key exchange required.</li>
+                    <li><strong>Example:</strong> Hard drive encryption.</li>
+                </ul>
             </div>
-        </section>
-
-        <hr class="my-16 border-slate-200">
-        
-        <!-- Encryption Section -->
-        <section id="encryption" class="my-12 max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Symmetric and Asymmetric Encryption</h2>
-            <p class="text-lg text-slate-600 text-center mb-8">
-                Encryption protects the confidentiality of data. Here, we compare the two dominant forms based on key usage.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-blue-500">
-                    <h3 class="text-2xl font-semibold text-blue-700 mb-4">Symmetric Encryption (e.g., AES)</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li><b>One Key:</b> Uses the exact same secret key for both encryption and decryption.</li>
-                        <li><b>Speed:</b> Extremely fast and efficient for bulk data encryption.</li>
-                        <li><b>Security Challenge:</b> The sender and receiver must securely exchange the secret key beforehand.</li>
-                        <li><b>Example:</b> Securing data at rest (hard drive encryption).</li>
-                    </ul>
-                    
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500">
-                    <h3 class="text-2xl font-semibold text-purple-700 mb-4">Asymmetric Encryption (e.g., RSA, ECC)</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li><b>Key Pair:</b> Uses a public key (for encryption) and a private key (for decryption).</li>
-                        <li><b>Speed:</b> Much slower than symmetric encryption; generally used for small data or key exchange.</li>
-                        <li><b>Security Advantage:</b> The public key can be shared widely without compromising security.</li>
-                        <li><b>Example:</b> Establishing a secure communication channel (TLS handshake).</li>
-                    </div>
-                </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-purple-500">
+                <h3 class="text-2xl font-semibold text-purple-700 mb-4">Asymmetric Encryption (e.g., RSA, ECC)</h3>
+                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <li><strong>Key Pair:</strong> Public encrypts, private decrypts.</li>
+                    <li><strong>Speed:</strong> Slower; used for key exchange.</li>
+                    <li><strong>Advantage:</strong> Public key can be shared safely.</li>
+                    <li><strong>Example:</strong> TLS handshake.</li>
+                </ul>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <hr class="my-16 border-slate-200">
+    <hr class="my-16 border-slate-200">
 
-        <!-- Digital Signatures Section -->
-        <section id="signatures" class="my-12 max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Digital Signatures: PKI vs. KSI</h2>
-            <p class="text-lg text-slate-600 text-center mb-8">
-                Signatures ensure data integrity and authenticity. The future of non-repudiation is keyless.
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
-                    <h3 class="text-2xl font-semibold text-red-700 mb-4">Traditional PKI/X.509 Signatures</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li><b>Key Dependency:</b> Signature validity relies entirely on the secrecy of the private key.</li>
-                        <li><b>Validity Challenge:</b> Signatures can be compromised if the key is stolen, and long-term validity requires complex timestamping and revocation lists.</li>
-                        <li><b>Trust Model:</b> Based on a hierarchical chain of trust (Certificate Authorities).</li>
-                        <li><b>Quantum Risk:</b> Highly vulnerable to quantum attacks that can break the underlying asymmetric key algorithms (like RSA).</li>
-                    </ul>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-teal-500">
-                    <h3 class="text-2xl font-semibold text-teal-700 mb-4">Keyless Signature Infrastructure (KSI)</h3>
-                    <ul class="list-disc list-inside space-y-2 text-slate-700">
-                        <li><b>Keyless Verification:</b> Verification relies only on cryptographic hash functions and a public ledger (blockchain), not on the continued secrecy of any key.</li>
-                        <li><b>Validity Advantage:</b> Signatures are future-proof and valid indefinitely, providing non-repudiation without key management risk.</li>
-                        <li><b>Trust Model:</b> Based on the security of the one-way hash function and mathematical proof.</li>
-                        <li><b>Quantum Risk:</b> Inherently <b>quantum-resilient</b> as verification is based on hash functions, which are much harder for quantum computers to break than asymmetric keys.</li>
-                    </div>
-                    
-                </div>
+    <!-- Digital Signatures Section -->
+    <section id="signatures" class="my-12 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Digital Signatures: PKI vs. KSI</h2>
+        <p class="text-lg text-slate-600 text-center mb-8">
+            Signatures ensure integrity and authenticity. The future is keyless.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-red-500">
+                <h3 class="text-2xl font-semibold text-red-700 mb-4">Traditional PKI/X.509 Signatures</h3>
+                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <li><strong>Key Dependency:</strong> Relies on private key secrecy.</li>
+                    <li><strong>Validity:</strong> Requires revocation & timestamping.</li>
+                    <li><strong>Trust:</strong> Hierarchical CAs.</li>
+                    <li><strong>Quantum Risk:</strong> Vulnerable to Shor's algorithm.</li>
+                </ul>
             </div>
-        </section>
-
-        <hr class="my-16 border-slate-200">
-
-        <!-- PQC Section -->
-        <section id="pqc" class="my-12 max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Post-Quantum Cryptography (PQC)</h2>
-            <p class="text-lg text-slate-600 text-center mb-8">
-                Techniques designed to resist attacks from large-scale quantum computers. These are set to replace current asymmetric standards (RSA/ECC).
-            </p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
-                    <h3 class="text-xl font-semibold text-orange-700 mb-3">Lattice-Based Crypto</h3>
-                    <p class="text-sm text-slate-600">Considered the most promising PQC category. Security is based on the computational difficulty of finding short vectors in a high-dimensional grid (lattice). <code>NIST Standard: CRYSTALS-Kyber.</code></p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
-                    <h3 class="text-xl font-semibold text-orange-700 mb-3">Hash-Based Signatures</h3>
-                    <p class="text-sm text-slate-600">Signatures based purely on secure hash functions. Extremely well-understood and fast, but signatures can be large, and keys are 'stateful' (used only once). <code>NIST Standard: XMSS / SPHINCS+</code>.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
-                    <h3 class="text-xl font-semibold text-orange-700 mb-3">Code-Based Crypto</h3>
-                    <p class="text-sm text-slate-600">Uses error-correcting codes (like McEliece). Offers very fast encryption but has large public keys, making it impractical for many uses.</p>
-                </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-teal-500">
+                <h3 class="text-2xl font-semibold text-teal-700 mb-4">Keyless Signature Infrastructure (KSI)</h3>
+                <ul class="list-disc list-inside space-y-2 text-slate-700">
+                    <li><strong>Keyless:</strong> Uses hash chains + blockchain.</li>
+                    <li><strong>Validity:</strong> Indefinite, future-proof.</li>
+                    <li><strong>Trust:</strong> Based on hash function security.</li>
+                    <li><strong>Quantum:</strong> Inherently resilient.</li>
+                </ul>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <hr class="my-16 border-slate-200">
+    <hr class="my-16 border-slate-200">
 
-        <!-- AI Exploration Tools -->
-        <section id="ai-exploration" class="my-12 max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">AI-Powered Cryptography Analysis</h2>
-            <p class="text-lg text-slate-600 max-w-xl mx-auto text-center mb-8">
-                Use the Gemini API to analyze, define, and find real-world applications for any cryptographic concept.
-            </p>
+    <!-- PQC Section -->
+    <section id="pqc" class="my-12 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">Post-Quantum Cryptography (PQC)</h2>
+        <p class="text-lg text-slate-600 text-center mb-8">
+            Techniques resistant to quantum attacks. Set to replace RSA/ECC.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
+                <h3 class="text-xl font-semibold text-orange-700 mb-3">Lattice-Based</h3>
+                <p class="text-sm text-slate-600">Security from hard lattice problems. <strong>NIST: CRYSTALS-Kyber.</strong></p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
+                <h3 class="text-xl font-semibold text-orange-700 mb-3">Hash-Based</h3>
+                <p class="text-sm text-slate-600">Pure hash functions. Stateful. <strong>NIST: XMSS, SPHINCS+.</strong></p>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-lg border-t-4 border-orange-500">
+                <h3 class="text-xl font-semibold text-orange-700 mb-3">Code-Based</h3>
+                <p class="text-sm text-slate-600">Error-correcting codes. Large keys. <em>McEliece.</em></p>
+            </div>
+        </div>
+    </section>
 
-            <div class="bg-white rounded-xl shadow-xl border border-teal-200 overflow-hidden">
-                <!-- LLM Tab Navigation -->
-                <div class="border-b border-slate-200 flex bg-gray-100">
-                    <button data-tab="ai-chat" class="analysis-tab-button active">Interactive Chatbot (Grounded)</button>
-                    <button data-tab="ai-analysis" class="analysis-tab-button">Structured Analysis Tools</button>
-                </div>
+    <hr class="my-16 border-slate-200">
 
-                <!-- LLM Tab Content: Chatbot -->
-                <div id="ai-chat" class="p-4 analysis-pane">
-                    <div id="chatbox">
-                        <div class="message-container bot-message">
-                            <div class="bot-bubble">
-                                Hello! I'm your Cryptography Analyst. I can answer questions on any algorithm (AES, RSA, ECC, PQC), digital signatures (PKI, KSI), and current security topics. How can I help you explore cryptography today?
-                            </div>
+    <!-- AI Exploration Tools -->
+    <section id="ai-exploration" class="my-12 max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold text-center text-slate-800 mb-4">AI-Powered Cryptography Analysis</h2>
+        <p class="text-lg text-slate-600 max-w-xl mx-auto text-center mb-8">
+            Powered by <strong>Gemma-2B (Open Source)</strong> via Hugging Face.
+        </p>
+
+        <div class="bg-white rounded-xl shadow-xl border border-teal-200 overflow-hidden">
+            <div class="border-b border-slate-200 flex bg-gray-100">
+                <button data-tab="ai-chat" class="analysis-tab-button active">Interactive Chatbot</button>
+                <button data-tab="ai-analysis" class="analysis-tab-button">Structured Analysis Tools</button>
+            </div>
+
+            <!-- Chatbot Tab -->
+            <div id="ai-chat" class="p-4 analysis-pane">
+                <div id="chatbox">
+                    <div class="message-container bot-message">
+                        <div class="bot-bubble">
+                            Hello! I'm your Cryptography Analyst. Ask about AES, RSA, KSI, Kyber, or quantum threats.
                         </div>
-                        <!-- Messages will be appended here -->
                     </div>
+                </div>
+                <div class="p-4 border-t border-slate-200 flex space-x-2">
+                    <input type="text" id="chatInput" placeholder="Ask about Dilithium, KSI, or quantum risks..."
+                        class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500 shadow-sm">
+                    <button id="sendMessageButton" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg transition-colors disabled:bg-teal-300">
+                        Send
+                    </button>
+                </div>
+                <div id="chatLoader" class="hidden text-center text-teal-600 font-semibold mt-4">
+                    <span class="animate-pulse">Thinking with Gemma-2B...</span>
+                </div>
+            </div>
 
-                    <div class="p-4 border-t border-slate-200 flex space-x-2">
-                        <input type="text" id="chatInput" placeholder="Ask about Kyber, quantum impact on RSA, or KSI scalability..." class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500 shadow-sm">
-                        <button id="sendMessageButton" class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-6 rounded-lg transition-colors disabled:bg-teal-300">
-                            Send
+            <!-- Analysis Tools Tab -->
+            <div id="ai-analysis" class="p-6 analysis-pane hidden">
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-3 flex items-center">
+                        <span class="mr-2">Simplify Terminology</span>
+                    </h3>
+                    <p class="text-gray-600 mb-4 text-sm">Enter a term like "Homomorphic Encryption" for a simple explanation.</p>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <input type="text" id="term-input" placeholder="e.g., Side-Channel Attack"
+                            class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 shadow-sm">
+                        <button id="simplifyButton" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition disabled:bg-indigo-300">
+                            Simplify Term
                         </button>
                     </div>
-                    <div id="chatLoader" class="hidden text-center text-teal-600 font-semibold mt-4">
-                        <span class="animate-pulse">Analyzing with Google Search grounding...</span>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-bold text-green-700 mb-3 flex items-center">
+                        <span class="mr-2">Generate Use Cases</span>
+                    </h3>
+                    <p class="text-gray-600 mb-4 text-sm">Enter an algorithm to get 3 modern real-world applications.</p>
+                    <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+                        <input type="text" id="use-case-input" placeholder="e.g., CRYSTALS-Dilithium"
+                            class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 shadow-sm">
+                        <button id="useCaseButton" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition disabled:bg-green-300">
+                            Find Use Cases
+                        </button>
                     </div>
                 </div>
 
-                <!-- LLM Tab Content: Analysis Tools -->
-                <div id="ai-analysis" class="p-6 analysis-pane hidden">
-                    
-                    <!-- Feature 1: Simplify Terminology -->
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold text-indigo-700 mb-3 flex items-center">
-                            <span class="mr-2">💡</span> Simplify Terminology
-                        </h3>
-                        <p class="text-gray-600 mb-4 text-sm">Enter any technical term (e.g., "Homomorphic Encryption") and get a simple, easy-to-digest explanation.</p>
-                        
-                        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                            <input type="text" id="term-input" placeholder="e.g., Side-Channel Attack" 
-                                class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition">
-                            <button id="simplifyButton" 
-                                    class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out disabled:bg-indigo-300">
-                                Simplify Term
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Feature 2: Generate Use Cases -->
-                    <div>
-                        <h3 class="text-xl font-bold text-green-700 mb-3 flex items-center">
-                            <span class="mr-2">🎯</span> Generate Use Cases (Grounded)
-                        </h3>
-                        <p class="text-gray-600 mb-4 text-sm">Enter a specific algorithm or technique and generate three distinct, modern, real-world applications.</p>
-                        
-                        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
-                            <input type="text" id="use-case-input" placeholder="e.g., Dilithium" 
-                                class="flex-grow p-3 border border-gray-300 rounded-lg focus:ring-green-500 focus:border-green-500 shadow-sm transition">
-                            <button id="useCaseButton"
-                                    class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out disabled:bg-green-300">
-                                Find Use Cases
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <!-- Analysis Results Display -->
-                    <section id="analysis-result" class="min-h-[120px] bg-gray-100 rounded-xl p-4 flex items-center justify-center text-gray-500 mt-6">
-                        Your structured analysis will appear here.
-                    </section>
-
-                </div>
+                <section id="analysis-result" class="min-h-[120px] bg-gray-100 rounded-xl p-4 flex items-center justify-center text-gray-500 mt-6">
+                    Your structured analysis will appear here.
+                </section>
             </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
+</main>
 
-    <footer class="bg-teal-900 text-stone-300 text-center p-6 mt-12">
-        <p>Cryptographic Techniques Interactive Platform - Powered by the Gemini API.</p>
-    </footer>
+<footer class="bg-teal-900 text-stone-300 text-center p-6 mt-12">
+    <p>Cryptographic Techniques Interactive Platform - Powered by <strong>Gemma-2B (Open Source)</strong> via Hugging Face.</p>
+</footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+<script>
+    // --- Hugging Face Gemma Configuration ---
+    const HF_MODEL = 'google/gemma-2b-it';
+    const HF_API_URL = `https://api-inference.huggingface.co/models/${HF_MODEL}`;
 
-            // --- Gemini API Configuration ---
-            const API_MODEL = 'gemini-2.5-flash-preview-09-2025';
-            const API_KEY = "AIzaSyDqqDszQu2wZRtpDM_WWrmZsvVb4XlKh6w"; // Placeholder for Canvas environment
-            const textApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${API_MODEL}:generateContent?key=${API_KEY}`;
-            
-            // --- In-Memory Data for Comparison Table ---
-            const comparisonData = [
-                { algorithm: 'AES-256', function: 'Encryption (Symmetric)', keyType: 'Secret Key (256-bit)', quantum: 'Resilient', useCase: 'Data at Rest, VPN Tunnels' },
-                { algorithm: 'RSA', function: 'Encryption/Signatures (Asymmetric)', keyType: 'Public/Private Pair (2048-bit+)', quantum: 'VULNERABLE (Shor\'s)', useCase: 'TLS Handshakes, Digital Certificates' },
-                { algorithm: 'Elliptic Curve (ECC)', function: 'Encryption/Signatures (Asymmetric)', keyType: 'Public/Private Pair', quantum: 'VULNERABLE (Shor\'s)', useCase: 'Bitcoin, Mobile Device Security' },
-                { algorithm: 'KSI', function: 'Digital Signature/Integrity', keyType: 'Hash-based (Keyless)', quantum: 'RESILIENT', useCase: 'Audit Logs, Supply Chain Integrity' },
-                { algorithm: 'CRYSTALS-Kyber', function: 'Key Exchange (PQC)', keyType: 'Lattice-based', quantum: 'Resilient', useCase: 'Post-Quantum TLS' },
-                { algorithm: 'CRYSTALS-Dilithium', function: 'Digital Signature (PQC)', keyType: 'Lattice-based', quantum: 'Resilient', useCase: 'Post-Quantum Code Signing' }
-            ];
+    // --- In-Memory Data for Comparison Table ---
+    const comparisonData = [
+        { algorithm: 'AES-256', function: 'Encryption (Symmetric)', keyType: 'Secret Key (256-bit)', quantum: 'Resilient', useCase: 'Data at Rest, VPN Tunnels' },
+        { algorithm: 'RSA', function: 'Encryption/Signatures (Asymmetric)', keyType: 'Public/Private Pair (2048-bit+)', quantum: 'VULNERABLE (Shor\'s)', useCase: 'TLS Handshakes, Digital Certificates' },
+        { algorithm: 'Elliptic Curve (ECC)', function: 'Encryption/Signatures (Asymmetric)', keyType: 'Public/Private Pair', quantum: 'VULNERABLE (Shor\'s)', useCase: 'Bitcoin, Mobile Device Security' },
+        { algorithm: 'KSI', function: 'Digital Signature/Integrity', keyType: 'Hash-based (Keyless)', quantum: 'RESILIENT', useCase: 'Audit Logs, Supply Chain Integrity' },
+        { algorithm: 'CRYSTALS-Kyber', function: 'Key Exchange (PQC)', keyType: 'Lattice-based', quantum: 'Resilient', useCase: 'Post-Quantum TLS' },
+        { algorithm: 'CRYSTALS-Dilithium', function: 'Digital Signature (PQC)', keyType: 'Lattice-based', quantum: 'Resilient', useCase: 'Post-Quantum Code Signing' }
+    ];
 
-            // --- Chat State and System Configuration ---
-            let chatHistory = []; 
-            const chatSystemPrompt = `You are a world-class cryptographic security consultant and educator. You must answer questions based on your vast knowledge of cryptographic algorithms (AES, RSA, ECC, etc.), digital signature methods (PKI, Keyless Signatures - KSI), and emerging Post-Quantum Cryptography (PQC) standards (Kyber, Dilithium).
-            You must maintain context from the user's previous questions.
-            Be concise, professional, and use clear, straightforward language. Limit your responses to a maximum of 3 paragraphs.
-            Crucially, for all modern or emerging topics (like PQC standards or current threats), use the Google Search tool for the most up-to-date and accurate grounding.`;
+    // --- Chat State ---
+    let chatHistory = [];
 
+    const chatSystemPrompt = `You are a world-class cryptographic security consultant and educator. 
+Answer questions on AES, RSA, ECC, digital signatures (PKI, KSI), and Post-Quantum Cryptography (Kyber, Dilithium).
+Be concise, professional, and use clear language. Limit responses to 2-3 short paragraphs.`;
 
-            // --- Utility Functions for LLM Calls ---
+    // --- Hugging Face API Call ---
+    async function callHuggingFaceAPI(userQuery, systemPrompt, useSearch, updateUI) {
+        const isAnalysis = updateUI === renderAnalysis;
+        const sendButton = isAnalysis
+            ? document.getElementById('simplifyButton') || document.getElementById('useCaseButton')
+            : document.getElementById('sendMessageButton');
+        const loader = isAnalysis ? document.getElementById('analysis-result') : document.getElementById('chatLoader');
 
-            /**
-             * Generic function to call the Gemini API for analysis and chat features.
-             * @param {string} userQuery - The specific query from the user.
-             * @param {string} systemPrompt - Instruction defining the model's persona and task.
-             * @param {boolean} useSearch - Whether to enable Google Search grounding.
-             * @param {function} updateUI - Function to update the UI (either chat or analysis result).
-             */
-            async function callGeminiAPI(userQuery, systemPrompt, useSearch, updateUI) {
-                const sendButton = document.getElementById('sendMessageButton') || document.getElementById('simplifyButton') || document.getElementById('useCaseButton');
-                const loader = document.getElementById('chatLoader') || document.getElementById('analysis-result');
-                const isAnalysis = updateUI === renderAnalysis;
+        // Loading state
+        if (isAnalysis) {
+            loader.innerHTML = `<div class="text-center p-4"><svg class="animate-spin h-5 w-5 mr-3 text-blue-500 inline-block" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Thinking…</div>`;
+            document.getElementById('simplifyButton').disabled = true;
+            document.getElementById('useCaseButton').disabled = true;
+        } else {
+            loader.classList.remove('hidden');
+            sendButton.disabled = true;
+        }
 
-                if (isAnalysis) {
-                    loader.innerHTML = '<div class="text-center p-4"><svg class="animate-spin h-5 w-5 mr-3 text-blue-500 inline-block" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Generating response...</div>';
-                    sendButton.disabled = true;
-                } else {
-                    loader.classList.remove('hidden');
-                    sendButton.disabled = true;
-                }
-
-
-                const payload = {
-                    contents: isAnalysis ? [{ parts: [{ text: userQuery }] }] : chatHistory,
-                    systemInstruction: { parts: [{ text: systemPrompt }] },
-                };
-
-                if (useSearch) {
-                    payload.tools = [{ "google_search": {} }];
-                }
-
-                let response, result;
-                let retries = 0;
-                const maxRetries = 3;
-
-                while (retries < maxRetries) {
-                    try {
-                        response = await fetch(textApiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        if (response.ok) {
-                            result = await response.json();
-                            break; // Success
-                        } else if (response.status === 429 && retries < maxRetries - 1) {
-                            const delay = Math.pow(2, retries) * 1000 + Math.random() * 1000;
-                            await new Promise(resolve => setTimeout(resolve, delay));
-                            retries++;
-                        } else {
-                            throw new Error(`API Error: ${response.status} ${response.statusText}`);
-                        }
-                    } catch (error) {
-                        if (isAnalysis) {
-                            loader.innerHTML = `<p class="text-red-600 p-4">Error: Failed to fetch response. ${error.message}</p>`;
-                        } else {
-                            updateUI('Sorry, an error occurred while connecting to the AI service.', false);
-                            chatHistory.pop(); // Rollback user message
-                        }
-                        return;
-                    }
-                }
-                
-                if (!result || !result.candidates || result.candidates.length === 0) {
-                    if (isAnalysis) {
-                        loader.innerHTML = '<p class="text-red-600 p-4">Error: The model returned an empty or invalid response.</p>';
-                    } else {
-                        updateUI('Error: The model returned an empty or invalid response.', false);
-                        chatHistory.pop(); // Rollback user message
-                    }
-                    return;
-                }
-
-                const text = result.candidates[0].content.parts[0].text;
-                updateUI(text, false); // Render the bot/analysis response
-                
-                if (!isAnalysis) {
-                    chatHistory.push({ role: "model", parts: [{ text: text }] });
-                }
-            }
-
-
-            // --- UI Rendering Functions ---
-            
-            function renderAnalysis(text, isUser) {
-                const chatbox = document.getElementById('analysis-result');
-                
-                chatbox.innerHTML = `
-                    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-inner mt-4 w-full markdown-output">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3 border-b pb-2">Analysis Result</h3>
-                        ${marked.parse(text)}
-                    </div>
-                `;
-                // Scroll to the result
-                chatbox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-
-            function renderChat(text, isUser) {
-                const chatbox = document.getElementById('chatbox');
-                
-                const container = document.createElement('div');
-                container.className = `message-container ${isUser ? 'user-message' : 'bot-message'}`;
-                
-                const bubble = document.createElement('div');
-                bubble.className = isUser ? 'user-bubble' : 'bot-bubble';
-                bubble.textContent = text;
-                
-                container.appendChild(bubble);
-                chatbox.appendChild(container);
-                chatbox.scrollTop = chatbox.scrollHeight; // Scroll to bottom
-            }
-
-            // --- LLM Feature Logic ---
-            
-            // Feature 1: Simplify Terminology (No search needed)
-            document.getElementById('simplifyButton').addEventListener('click', async () => {
-                const term = document.getElementById('term-input').value.trim();
-                const simplifyButton = document.getElementById('simplifyButton');
-                if (!term) {
-                    renderAnalysis('Please enter a technical term to simplify.', false);
-                    return;
-                }
-                simplifyButton.disabled = true;
-
-                const systemPrompt = "You are a professional technical writer specializing in making complex cryptographic and security topics simple and engaging. Your goal is to simplify the technical term provided by the user into a concise, easy-to-digest, one-paragraph explanation suitable for a non-technical audience. Use analogies where helpful.";
-                const userQuery = `Explain the term: "${term}"`;
-
-                await callGeminiAPI(userQuery, systemPrompt, false, renderAnalysis);
-                simplifyButton.disabled = false;
+        let prompt = systemPrompt + "\n\n";
+        if (isAnalysis) {
+            prompt += userQuery;
+        } else {
+            const recent = chatHistory.slice(-6);
+            recent.forEach(msg => {
+                const role = msg.role === 'user' ? 'User' : 'Assistant';
+                prompt += `${role}: ${msg.parts[0].text}\n`;
             });
+            prompt += "Assistant:";
+        }
 
-            // Feature 2: Generate Use Cases (Uses Search Grounding for current relevance)
-            document.getElementById('useCaseButton').addEventListener('click', async () => {
-                const topic = document.getElementById('use-case-input').value.trim();
-                const useCaseButton = document.getElementById('useCaseButton');
-                if (!topic) {
-                    renderAnalysis('Please enter an algorithm (e.g., Dilithium) or technique (e.g., Homomorphic Encryption) to find use cases for.', false);
-                    return;
-                }
-                useCaseButton.disabled = true;
+        const payload = {
+            inputs: prompt,
+            parameters: { max_new_tokens: 256, temperature: 0.7, top_p: 0.9 }
+        };
 
-                const systemPrompt = "You are an expert industry analyst. Your task is to analyze the provided algorithm or technique and generate exactly three distinct, modern, and highly specific real-world use cases. Output the use cases as a numbered markdown list, starting with the use case name in bold, followed by a one-sentence description.";
-                const userQuery = `Generate three modern, real-world use cases for: ${topic}`;
+        let retries = 0, maxRetries = 3;
+        let data;
 
-                await callGeminiAPI(userQuery, systemPrompt, true, renderAnalysis);
-                useCaseButton.disabled = false;
-            });
-
-            // --- Chatbot Logic (Uses Search Grounding) ---
-
-            async function sendChatMessage(userMessage) {
-                const chatInput = document.getElementById('chatInput');
-                const sendButton = document.getElementById('sendMessageButton');
-                const chatLoader = document.getElementById('chatLoader');
-
-                renderChat(userMessage, true);
-                chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
-
-                chatInput.value = '';
-                
-                await callGeminiAPI(null, chatSystemPrompt, true, renderChat);
-
-                sendButton.disabled = false;
-                chatLoader.classList.add('hidden');
-                chatInput.focus();
-            }
-            
-            // --- Chat Event Handlers ---
-            const chatInput = document.getElementById('chatInput');
-            const sendButton = document.getElementById('sendMessageButton');
-
-            sendButton.addEventListener('click', () => {
-                const userMessage = chatInput.value.trim();
-                if (userMessage) {
-                    sendChatMessage(userMessage);
-                }
-            });
-
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    const userMessage = chatInput.value.trim();
-                    if (userMessage) {
-                        sendChatMessage(userMessage);
-                    }
-                }
-            });
-            
-            // --- UI Setup and Event Listeners (Existing Logic) ---
-
-            // Inject Comparison Table Data
-            const tableBody = document.getElementById('comparisonTableBody');
-            comparisonData.forEach(item => {
-                const row = tableBody.insertRow();
-                row.className = 'hover:bg-slate-50 transition-colors';
-                
-                const vulnerabilityClass = item.quantum.includes('VULNERABLE') ? 'text-red-600 font-bold' : (item.quantum.includes('RESILIENT') ? 'text-teal-600 font-bold' : 'text-slate-600');
-                
-                row.innerHTML = `
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">${item.algorithm}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">${item.function}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">${item.keyType}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm ${vulnerabilityClass}">${item.quantum}</td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">${item.useCase}</td>
-                `;
-            });
-
-
-            // LLM Tabbed Content Logic
-            const aiTabs = document.querySelectorAll('.analysis-tab-button');
-            const aiPanes = document.querySelectorAll('.analysis-pane');
-
-            aiTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const tabId = tab.getAttribute('data-tab');
-                    aiTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-
-                    aiPanes.forEach(pane => {
-                        pane.classList.toggle('hidden', pane.id !== tabId);
-                    });
+        while (retries < maxRetries) {
+            try {
+                const resp = await fetch(HF_API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
                 });
-            });
 
-            // Navigation Scroll Logic (Existing Logic)
-            const navLinks = document.querySelectorAll('.nav-link');
-            const sections = document.querySelectorAll('section');
-
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
-                        });
+                if (!resp.ok) {
+                    const err = await resp.text();
+                    if (resp.status === 429 && retries < maxRetries - 1) {
+                        const delay = Math.pow(2, retries) * 1000 + Math.random() * 1000;
+                        await new Promise(r => setTimeout(r, delay));
+                        retries++;
+                        continue;
                     }
-                });
-            }, observerOptions);
+                    throw new Error(`HF Error ${resp.status}: ${err}`);
+                }
 
-            sections.forEach(section => { observer.observe(section); });
+                data = await resp.json();
+                break;
+            } catch (e) {
+                console.error(e);
+                retries++;
+            }
+        }
 
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    document.querySelector(targetId).scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
-                });
+        if (!data || !data[0]?.generated_text) {
+            const msg = 'Sorry, no response from AI. Try again.';
+            if (isAnalysis) loader.innerHTML = `<p class="text-red-600 p-4">${msg}</p>`;
+            else updateUI(msg, false);
+        } else {
+            const answer = data[0].generated_text.replace(prompt, '').trim();
+            updateUI(answer, false);
+            if (!isAnalysis) {
+                chatHistory.push({ role: "model", parts: [{ text: answer }] });
+            }
+        }
+
+        // Reset UI
+        if (isAnalysis) {
+            document.getElementById('simplifyButton').disabled = false;
+            document.getElementById('useCaseButton').disabled = false;
+        } else {
+            sendButton.disabled = false;
+            loader.classList.add('hidden');
+        }
+    }
+
+    // --- Rendering ---
+    function renderAnalysis(text) {
+        const resultBox = document.getElementById('analysis-result');
+        resultBox.innerHTML = `
+            <div class="p-6 bg-white border border-gray-200 rounded-lg shadow-inner mt-4 markdown-output">
+                <h3 class="text-xl font-semibold text-gray-800 mb-3 border-b pb-2">Analysis Result</h3>
+                ${marked.parse(text)}
+            </div>`;
+        resultBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function renderChat(text, isUser) {
+        const chatbox = document.getElementById('chatbox');
+        const container = document.createElement('div');
+        container.className = `message-container ${isUser ? 'user-message' : 'bot-message'}`;
+        const bubble = document.createElement('div');
+        bubble.className = isUser ? 'user-bubble' : 'bot-bubble';
+        bubble.textContent = text;
+        container.appendChild(bubble);
+        chatbox.appendChild(container);
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    // --- Feature Logic ---
+    document.getElementById('simplifyButton').addEventListener('click', async () => {
+        const term = document.getElementById('term-input').value.trim();
+        if (!term) return renderAnalysis('Please enter a term.');
+        const prompt = `You are a technical writer. Simplify this crypto term in one paragraph using an analogy: "${term}"`;
+        await callHuggingFaceAPI(prompt, chatSystemPrompt, false, renderAnalysis);
+    });
+
+    document.getElementById('useCaseButton').addEventListener('click', async () => {
+        const topic = document.getElementById('use-case-input').value.trim();
+        if (!topic) return renderAnalysis('Please enter an algorithm.');
+        const prompt = `List exactly 3 modern real-world use cases for "${topic}" in a numbered markdown list.`;
+        await callHuggingFaceAPI(prompt, chatSystemPrompt, true, renderAnalysis);
+    });
+
+    async function sendChatMessage(userMessage) {
+        renderChat(userMessage, true);
+        chatHistory.push({ role: "user", parts: [{ text: userMessage }] });
+        document.getElementById('chatInput').value = '';
+        await callHuggingFaceAPI(null, chatSystemPrompt, false, renderChat);
+    }
+
+    const chatInput = document.getElementById('chatInput');
+    const sendButton = document.getElementById('sendMessageButton');
+    sendButton.addEventListener('click', () => {
+        const msg = chatInput.value.trim();
+        if (msg && !sendButton.disabled) sendChatMessage(msg);
+    });
+    chatInput.addEventListener('keypress', e => {
+        if (e.key === 'Enter' && !sendButton.disabled) {
+            const msg = chatInput.value.trim();
+            if (msg) sendChatMessage(msg);
+        }
+    });
+
+    // --- Table Injection ---
+    const tableBody = document.getElementById('comparisonTableBody');
+    comparisonData.forEach(item => {
+        const row = tableBody.insertRow();
+        row.className = 'hover:bg-slate-50 transition-colors';
+        const vulnClass = item.quantum.includes('VULNERABLE') ? 'text-red-600 font-bold' : 'text-teal-600 font-bold';
+        row.innerHTML = `
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">${item.algorithm}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">${item.function}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">${item.keyType}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm ${vulnClass}">${item.quantum}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-600">${item.useCase}</td>`;
+    });
+
+    // --- Tab Switching ---
+    document.querySelectorAll('.analysis-tab-button').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabId = tab.getAttribute('data-tab');
+            document.querySelectorAll('.analysis-tab-button').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            document.querySelectorAll('.analysis-pane').forEach(pane => {
+                pane.classList.toggle('hidden', pane.id !== tabId);
             });
         });
-    </script>
+    });
+
+    // --- Navigation ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${entry.target.id}`);
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+    sections.forEach(s => observer.observe(s));
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
+            document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
+</script>
 
 </body>
 </html>
-
